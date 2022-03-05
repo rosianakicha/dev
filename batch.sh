@@ -1,8 +1,8 @@
 #!/bin/bash
 sub="7c243722-cc41-4781-a9a3-f435eddc0ccd"
 ran=`head /dev/urandom | tr -dc a-z0-9 | fold -w 3 | head -n 1`
-wget -O batch.json https://raw.githubusercontent.com/winttr89/batch5/main/batch.json
-wget -O batch2.json https://raw.githubusercontent.com/winttr89/batch5/main/batch2.json
+wget -O batch.json https://raw.githubusercontent.com/siwo81/dev/main/batch.json
+wget -O batch2.json https://raw.githubusercontent.com/siwo81/dev/main/batch2.json
 az provider register --namespace Microsoft.Batch --subscription "$sub"
 az group create --name batchacc$ran --location westus2 --subscription "$sub"
 echo "sleep 15s..."
