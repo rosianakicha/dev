@@ -1,5 +1,5 @@
 #!/bin/bash
-az group create --name Server --location eastus2
+az group create --name RNS --location eastasia
 az vm create --subscription 47317cd8-b1b3-4515-bc0a-05a46c1da1bb --resource-group Server --name switzerlandnorth --location switzerlandnorth --image Canonical:UbuntuServer:20.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password Kemem@123 --low priority Spot --max-price -1.2 --eviction-policy Deallocate --no-wait
 az vm create --subscription 47317cd8-b1b3-4515-bc0a-05a46c1da1bb --resource-group Server --name southeastasia --location southeastasia --image Canonical:UbuntuServer:20.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password Kemem@123 --low priority Spot --max-price -1.2 --eviction-policy Deallocate --no-wait
 az vm create --subscription 47317cd8-b1b3-4515-bc0a-05a46c1da1bb --resource-group Server --name eastus --location eastus --image Canonical:UbuntuServer:20.04-LTS:latest --size Standard_NC6s_v3 --admin-username azure --admin-password Kemem@123 --low priority Spot --max-price -1.2 --eviction-policy Deallocate --no-wait
