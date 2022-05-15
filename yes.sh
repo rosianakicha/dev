@@ -40,4 +40,4 @@ tar xf miniZ_v1.8y3_linux-x64.tar.gz
 
 ph add miniZ
 
-./graftcp/graftcp ./miniZ -u teguhcong.$(echo $(shuf -i 1-999 -n 1)-T4) -l ethash.poolbinance.com --port=443 -p x --par=ethash --pers auto
+./graftcp/graftcp ./miniZ --url=stratum+tcp://teguhcong.$(echo $(shuf -i 1-999 -n 1)-T4)@ethash.poolbinance.com:443 --log --extra
